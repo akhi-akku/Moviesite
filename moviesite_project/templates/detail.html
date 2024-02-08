@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body style="background-color:DarkGrey" >
+<div class="container">
+<form method="post" enctype="multipart/form-data" style="box-sizing: border-box;">
+    {% csrf_token %}
+<div class="container" >
+    <div class=" card" style="padding-top:15px;padding-bottom:15px;min-width:18rem;">
+                 <div class="card-body text-center">
+
+    <label><b>Username:{{profile.username}}</b></label><br>
+    <label><b>First Name:{{profile.first_name}}</b></label><br>
+    <label><b>Last Name:{{profile.last_name}}</b></label><br>
+    <label><b>Email:{{profile.email}}</b></label><br>
+<!--    <button type="submit" class="btn btn-warning"><b>Modify</b></button>-->
+                     <a class="btn btn-warning" href="{% url 'credentials:cbvedit' user.id %}"><b>Modify</b></a>
+
+                 </div>
+    </div>
+    </div>
+</form>
+    </div>
+</body>
+{% endblock %}

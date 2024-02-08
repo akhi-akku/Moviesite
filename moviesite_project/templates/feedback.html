@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body style="background-color:DarkGrey">
+<form method="post" action="{% url 'movieapp:AllProdCat' %}">
+    {% csrf_token %}
+<input type="text" name="review" placeholder="Post your review here" style="width: 700px; height: 90px; border: 5px solid #999999;"><br>
+                  <input type="radio" id="1" name="good">
+                   <label>Good</label>&nbsp;
+                  <input type="radio" id="2" name="avg">
+                  <label>Average</label>
+                 <input type="radio" id="3" name="bad">
+                 <label>Bad</label><br>
+    <input type="submit" value="Done">
+</form>
+</body>
+{% endblock %}

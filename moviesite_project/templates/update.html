@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body style="background-color:DarkGrey" >
+<div class="container">
+<form method="post" enctype="multipart/form-data" style="box-sizing: border-box;">
+    {% csrf_token %}
+<div class="container" style="box-sizing: border-box;">
+    {{form.as_p}}
+    <input type="submit">
+
+    </div>
+</form>
+    </div>
+</body>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+.my_title{
+     font-size:25px;
+     text-transform:uppercase;
+     letter-spacing:.2em;
+}
+    .my_row_class{
+        padding-top:15px;
+}
+
+.my_row_class .mx_auto{
+        color:black;
+        font-size:12px;
+}
+
+.my_image_padding{
+     padding:50px;
+}
+
+.my_bottom_margin{
+     margin_bottom:10px;
+}
+
+.card-body h4{
+     font-size:14px;
+     text-transform:uppercase;
+     letter-spacing:.2em;
+}
+

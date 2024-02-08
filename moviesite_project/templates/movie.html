@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+      {{movie.title}} -- Movie Hub
+{% endblock %}
+
+{% block content %}
+<div class="row my_prod_row_class">
+
+<div class="container">
+      <br>
+<div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+            <div class="card" style="min-width:18rem">
+                  <img class="card-img-top" src="{{movie.image.url}}" alt="{{movie.title}}" height="600px" width="200px">
+            </div>
+      </div>
+
+
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <h1 style="font-weight:900;font-size:50px;text-transform:uppercase;padding-top:15px;padding-bottom:15px;">{{movie.title}}</h1>
+            <p style="font-weight:800;">{{movie.category}}&nbsp;Movie</p>
+            <p>Release Date: {{movie.rls_date}}</p>
+            <p class="text-justify my_prod_text">{{movie.description}}</p>
+            <p class="my_title"><b>Cast</b></p>
+            <p>{{movie.actors}}</p>
+            <p>{{movie.yt_link}}</p>
+
+            <form method="post">
+<!--                  <input type="text" name="review" placeholder="Post your review here" style="width: 700px; height: 90px; border: 5px solid #999999;"><br>-->
+<!--                  <input type="radio" id="1" name="good">-->
+<!--                   <label>Good</label>&nbsp;-->
+<!--                  <input type="radio" id="2" name="avg">-->
+<!--                  <label>Average</label>-->
+<!--                 <input type="radio" id="3" name="bad">-->
+<!--                 <label>Bad</label><br>-->
+                <a class="btn btn-warning" href="{% url 'movieapp:feedback' %}">Post Review And Rate Movie</a><br>
+<!--                  <button type="submit" class="btn btn-warning">Rate Movie</button>-->
+<!--                  <button type="submit" class="btn btn-warning">Post Review</button><br>-->
+                 <hr>
+                  {% if user.is_authenticated and movie.username_added|stringformat:"s" == user.username %}
+
+                     <a class="btn btn-success" href="{% url 'movieapp:cbvupdate' movie.id %}">Update</a>&nbsp;&nbsp;&nbsp;
+                     <a class="btn btn-danger" href="{% url 'movieapp:delete' movie.id %}">Delete</a><br>
+                  {% endif %}
+            </form>
+
+      </div>
+            </div>
+</div>
+      </div>
+      </div>
+{% endblock %}

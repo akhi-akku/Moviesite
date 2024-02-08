@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+<style>
+    .my_row_class{
+        padding-top:15px;
+}
+
+.my_row_class .mx_auto{
+        color:black;
+        font-size:12px;
+}
+
+.my_image_padding{
+     padding:50px;
+}
+
+
+
+</style>
+{% block title %}
+   {% if category %}
+      {{category.name}} -- Movie Hub
+   {% else %}
+      See our new movie collections -- Movie Hub
+   {% endif %}
+{% endblock %}
+{% block content %}
+{% if category %}
+     <div>
+        <div class="row my_row_class" style="padding-top:15px;">
+            <div class="mx-auto">
+           <p><a href="{% url 'movieapp:AllProdCat' %}">Our Movie Collection</a></p>
+            </div>
+        </div>
+     </div>
+  {% endif %}
+<div class="mx_auto">
+   {% if category %}
+      <img  src="{{category.image.url}}" alt="{{category.name}}" width="1300px" height="300px"  >
+</div>
+<br>
+      <h1 class="text-center" style="text-transform:uppercase;">{{category.name}}</h1><br>
+      <p class="text-justify">{{category.description}}</p>
+  {% else %}
+<div>
+           <img  src="{% static 'img/movies_Banner1.jpg' %}" alt="our movies" width="1300px" height="800px" >
+      </div>
+<br>
+<div>
+          <h1 class="text-center" style="text-transform:uppercase;letter-spacing:.2em;">Our Movie Collection</h1>
+          <p class="text-justify">In the world of endless movie choices, this website for sharing, discovering, and discussing
+the latest movie</p>
+     </div>
+{% endif %}
+
+<div class="container">
+    <div class="row mx_auto" style="padding-top:15px;padding-bottom:15px;">
+        {% for movie in movies.object_list %}
+
+        <div class="my_bottom_margin col-9 col-sm-12 col-md-4 xol-lg-4" style="margin_bottom:10px;">
+            <div class="card text-center" style="min-width:18rem;">
+                {% if movie.image %}
+                <a href="{{movie.get_url}}"><img class="card-img-top my_image" src="{{movie.image.url}}" alt="{{movie.title}}" height="130px" width="130px"  ></a>
+                {% endif %}
+
+            <div class="card-body">
+                <h4 style="font-size:14px;text-transform:uppercase;letter-spacing:.2em;">{{movie.title}}</h4>
+            </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-md-9" style="text-align:center"><br>
+  <a class="btn btn-warning" href="{% url 'movieapp:add_movie' %}" >Add New Movie</a>
+</div>
+   <div class="mx_auto">
+        {% if movies.paginator.num_pages > 1 %}
+
+        <hr>
+        <div class="text-center">
+            {% for pg in movies.paginator.page_range %}
+               <a href="?page={{pg}}" class="btn btn-light btn-sm {% if movies.number == pg %} active {% endif %} "}>{{pg}}</a>
+
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <br>
+</div>
+
+{% endblock %}
